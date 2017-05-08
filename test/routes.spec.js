@@ -143,7 +143,7 @@ describe('server side testing', () => {
         .post('/api/v1/folders')
         .send({
           folder_name: 'created folder'
-        }, 'id')
+        })
         .end((error, response) => {
           const { body } = response
           const object   = response.body[2]
