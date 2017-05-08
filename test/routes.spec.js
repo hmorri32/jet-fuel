@@ -137,39 +137,39 @@ describe('server side testing', () => {
       })
     })
 
-    describe('POST /api/v1/folders', () => {
-      it('should allow me to create a new folder', (done) => {
-        chai.request(server)
-        .post('/api/v1/folders')
-        .send({
-          folder_name: 'created folder'
-        })
-        .end((error, response) => {
-          const { body } = response
-          const object   = response.body[2]
-          response.should.have.status(201)
-          body.should.be.a('array')
-          body.length.should.equal(3)
-          object.should.have.property('folder_name')
-          object.folder_name.should.equal('created folder')
-          object.should.have.property('id')
-          object.should.have.property('created_at')
-          object.should.have.property('updated_at')
-          done()
-        })
-      })
-      it('shouldn\'t allow me to post with bunk data', (done) => {
-        chai.request(server)
-        .post('/api/v1/foldes')
-        .send({
-          whack_data: "whatever"
-        })
-        .end((error, response) => {
-          response.should.have.status(404)
-          done()
-        })
-      })
-    })
+    // describe('POST /api/v1/folders', () => {
+    //   it('should allow me to create a new folder', (done) => {
+    //     chai.request(server)
+    //     .post('/api/v1/folders')
+    //     .send({
+    //       folder_name: 'created folder'
+    //     })
+    //     .end((error, response) => {
+    //       const { body } = response
+    //       const object   = response.body[2]
+    //       response.should.have.status(201)
+    //       body.should.be.a('array')
+    //       body.length.should.equal(3)
+    //       object.should.have.property('folder_name')
+    //       object.folder_name.should.equal('created folder')
+    //       object.should.have.property('id')
+    //       object.should.have.property('created_at')
+    //       object.should.have.property('updated_at')
+    //       done()
+    //     })
+    //   })
+    //   it('shouldn\'t allow me to post with bunk data', (done) => {
+    //     chai.request(server)
+    //     .post('/api/v1/foldes')
+    //     .send({
+    //       whack_data: "whatever"
+    //     })
+    //     .end((error, response) => {
+    //       response.should.have.status(404)
+    //       done()
+    //     })
+    //   })
+    // })
 
     describe('GET /api/v1/urls', () => {
       it('should allow me to fetch those URLS', (done) => {
@@ -204,27 +204,27 @@ describe('server side testing', () => {
       })
     })
 
-    describe('POST /api/v1/urls', () => {
-      it('should post URL ', function(done){
-        chai.request(server)
-        .post(`/api/v1/urls/`)
-        .send({ long_url: 'www.turing.io' })
-        .end(function (err, res) {
-          res.should.have.status(201)
-          const { body } = res
-          res.should.be.json
-          body.should.be.a('object')
-          body.should.have.property('url_name')
-          body.should.have.property('folder_id')
-          body.should.have.property('long_url')
-          body.should.have.property('id')
-          body.should.have.property('visit_count')
-          body.should.have.property('created_at')
-          body.should.have.property('updated_at')
-          done()
-        }).timeout(20000)
-      })
-    })
+    // describe('POST /api/v1/urls', () => {
+    //   it('should post URL ', function(done){
+    //     chai.request(server)
+    //     .post(`/api/v1/urls/`)
+    //     .send({ long_url: 'www.turing.io' })
+    //     .end(function (err, res) {
+    //       res.should.have.status(201)
+    //       const { body } = res
+    //       res.should.be.json
+    //       body.should.be.a('object')
+    //       body.should.have.property('url_name')
+    //       body.should.have.property('folder_id')
+    //       body.should.have.property('long_url')
+    //       body.should.have.property('id')
+    //       body.should.have.property('visit_count')
+    //       body.should.have.property('created_at')
+    //       body.should.have.property('updated_at')
+    //       done()
+    //     }).timeout(20000)
+    //   })
+    // })
 
     describe('GET redirect /:id', () => {
       it('should redirect to longURL', (done) => {
